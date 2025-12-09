@@ -1,133 +1,212 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity Web Player | App1</title>
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
-  </head>
-  <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
-      <div id="unity-loading-bar">
-        <div id="unity-logo"></div>
-        <div id="unity-progress-bar-empty">
-          <div id="unity-progress-bar-full"></div>
-        </div>
-      </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-logo-title-footer"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">App1</div>
-      </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Flight 4.0.4 – Symbol Grid</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+  
+    @font-face {
+      font-family: "MokotoRegular";
+      src: url("mokotoregular.ttf") format("truetype");
+    }
+
+    @font-face {
+      font-family: "MokotoGlitch";
+      src: url("mokotoregularglitchmark.ttf") format("truetype");
+    }
+
+    @font-face {
+      font-family: "MokotoOutline";
+      src: url("mokoto-mokoto-regular-glitch-mark-outline-400.ttf") format("truetype");
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 1;
+      padding: 1;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="app">
+    
+<section class="screen active" id="screen-ready">
+  <div class="ready-top">
+  </div>
+
+  <div class="ready-center">
+    <div class="ready-word">FLIGHT</div>
+    <div class="ready-word">4.0.4</div>
+    <div class="ready-word">DECODER</div>
+
+    <div class="menu-list">
+      <span class="menu-item" data-screen="screen-grid">Start Game</span>
+      <span class="menu-item" data-screen="screen-info">How to Play</span>
+      <span class="menu-item" data-screen="screen-about">About</span>
     </div>
-    <script>
-      var canvas = document.querySelector("#unity-canvas");
+  </div>
 
-      // Shows a temporary message banner/ribbon for a few seconds, or
-      // a permanent error message on top of the canvas if type=='error'.
-      // If type=='warning', a yellow highlight color is used.
-      // Modify or remove this function to customize the visually presented
-      // way that non-critical warnings and error messages are presented to the
-      // user.
-      function unityShowBanner(msg, type) {
-        var warningBanner = document.querySelector("#unity-warning");
-        function updateBannerVisibility() {
-          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-        }
-        var div = document.createElement('div');
-        div.innerHTML = msg;
-        warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
-        else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-          setTimeout(function() {
-            warningBanner.removeChild(div);
-            updateBannerVisibility();
-          }, 5000);
-        }
-        updateBannerVisibility();
-      }
+  
+</section>
 
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/test again.loader.js";
-      var config = {
-        arguments: [],
-        dataUrl: buildUrl + "/test again.data.unityweb",
-        frameworkUrl: buildUrl + "/test again.framework.js.unityweb",
-        codeUrl: buildUrl + "/test again.wasm.unityweb",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "App1",
-        productVersion: "1.0",
-        showBanner: unityShowBanner,
-        // errorHandler: function(err, url, line) {
-        //    alert("error " + err + " occurred at line " + line);
-        //    // Return 'true' if you handled this error and don't want Unity
-        //    // to process it further, 'false' otherwise.
-        //    return true;
-        // },
-      };
+<!-- HOW TO PLAY -->
+<section class="screen" id="screen-info">
+  <div class="ready-top">
+    <span class="menu-item" data-screen="screen-ready">&lt;&lt;&lt; BACK</span>
+  </div>
 
-      // By default, Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
+  <div class="ready-center">
+    <div class="ready-word">HOW TO PLAY</div>
 
-      // If you would like all file writes inside Unity Application.persistentDataPath
-      // directory to automatically persist so that the contents are remembered when
-      // the user revisits the site the next time, uncomment the following line:
-      // config.autoSyncPersistentDataPath = true;
-      // This autosyncing is currently not the default behavior to avoid regressing
-      // existing user projects that might rely on the earlier manual
-      // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
-      // expected to change.
+    <div class="howto-box">
+      <p class="howto-text">
+       This is a symbol decoder game and it's up to you to help the analyst recover the code
+      </p>
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
+      <ol class="howto-list">
+        <li>Tap a symbol in the grid.</li>
+        <li>The hidden number appears for <strong>1 second</strong>.</li>
+        <li>When the time is up, the symbol comes back. The number disappears.</li>
+      </ol>
 
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-        document.querySelector("#unity-container").className = "unity-mobile";
-        canvas.className = "unity-mobile";
+      <p class="howto-text">
+        You will need this to form the correct formation of numbers to proceed to the next minigame.
+      </p>
+    </div>
 
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
+    <span class="menu-item howto-start" data-screen="screen-grid">
+      Start Game &gt;&gt;&gt;
+    </span>
+  </div>
+
+</section>
 
 
-      } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
-      }
 
-      document.querySelector("#unity-loading-bar").style.display = "block";
+<!-- ABOUT -->
+<section class="screen" id="screen-about">
+  <div class="ready-top">
+    <span class="menu-item" data-screen="screen-ready">&lt;&lt;&lt; BACK</span>
+  </div>
 
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
-              }).then((unityInstance) => {
-                document.querySelector("#unity-loading-bar").style.display = "none";
-                document.querySelector("#unity-fullscreen-button").onclick = () => {
-                  unityInstance.SetFullscreen(1);
-                };
+  <div class="ready-center">
+    <div class="ready-word">ABOUT THIS GAME</div>
 
-              }).catch((message) => {
-                alert(message);
-              });
-            };
+    <div class="howto-box">
+      <p class="howto-text">
+        Flight 4.0.4 Decoder is part of an immersive cybersecurity training project
+        created with small and medium-sized businesses in mind.
+      </p>
 
-      document.body.appendChild(script);
+      <p class="howto-text">
+        Instead of long presentations, this game lets employees <strong>practise
+        making decisions</strong> in a safe, playful way. By linking strange symbols
+        to numbers, players get used to slowing down, paying attention, and
+        thinking before they click.
+      </p>
 
-    </script>
-  </body>
+      <p class="howto-text">
+        The game sits alongside other training tools to
+        help people understand how everyday actions can protect data, reduce
+        risks like phishing and scams, and build a safer digital workplace.
+      </p>
+    </div>
+  </div>
+
+  <div class="ready-bottom">CYBERSECURITY TRAINING</div>
+</section>
+
+
+
+<section class="screen" id="screen-grid">
+  <div class="grid-header">
+    <span class="menu-item" data-screen="screen-ready">&lt;&lt;&lt; BACK</span>
+  </div>
+  <div class="grid-spacer"></div>
+  <div class="grid-wrapper">
+    <div class="symbol-grid" id="symbol-grid"></div>
+  </div>
+  <div class="grid-footer">FLIGHT 4.0.4</div>
+</section>
+
+  </div>
+
+  <script>
+
+  const tiles = [
+    { symbol: "0.png", numberImg: "number0.png" },
+    { symbol: "1.png", numberImg: "number1.png" },
+    { symbol: "2.png", numberImg: "number2.png" },
+    { symbol: "3.png", numberImg: "number3.png" },
+    { symbol: "4.png", numberImg: "number4.png" },
+    { symbol: "5.png", numberImg: "number5.png" },
+    { symbol: "6.png", numberImg: "number6.png" },
+    { symbol: "7.png", numberImg: "number7.png" },
+    { symbol: "8.png", numberImg: "number8.png" },
+    { symbol: "9.png", numberImg: "number9.png" }
+  ];
+
+  const screens = document.querySelectorAll(".screen");
+  const gridEl  = document.getElementById("symbol-grid");
+
+  function showScreen(id) {
+    screens.forEach(s => s.classList.toggle("active", s.id === id));
+  }
+
+
+  document.addEventListener("click", e => {
+    const btn = e.target.closest("[data-screen]");
+    if (btn) showScreen(btn.dataset.screen);
+  });
+
+
+  tiles.forEach((tile, i) => {
+    const btn = document.createElement("button");
+    btn.className = "symbol";
+    btn.dataset.i = i;
+
+    const img = document.createElement("img");
+    img.src = tile.symbol;
+    btn.appendChild(img);
+
+    tile.img = img;
+    tile.tid = null;
+    gridEl.appendChild(btn);
+  });
+
+  
+  gridEl.addEventListener("click", e => {
+    const btn = e.target.closest(".symbol");
+    if (!btn) return;
+
+    const t = tiles[btn.dataset.i];
+    if (!t) return;
+
+    if (t.tid) clearTimeout(t.tid);
+
+    t.img.src = t.numberImg;
+    t.tid = setTimeout(() => {
+      t.img.src = t.symbol;
+      t.tid = null;
+    }, 500);
+  });
+
+  </script>
+
+</body>
 </html>
